@@ -2,7 +2,7 @@
 <Container version="2">
   <Name>elasticsearch</Name>
   <Repository>elasticsearch:7.1.1</Repository>
-  <Registry>https://hub.docker.com/_/elasticsearch</Registry>
+  <Registry>https://hub.docker.com/r/ddarek/elasticsearch/Dockerfile/</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>bash</Shell>
