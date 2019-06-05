@@ -66,6 +66,16 @@
       <ContainerDir>/usr/share/elasticsearch/data</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
+        <Volume>
+      <HostDir>/mnt/cache/appdata/elastic/</HostDir>
+      <ContainerDir>/usr/share/elasticsearch/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/cache/elastic/logs</HostDir>
+      <ContainerDir>/usr/share/elasticsearch/logs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
   </Data>
   <Environment>
     <Variable>
@@ -76,6 +86,8 @@
   </Environment>
   <Labels/>
   <Config Name="Data" Target="/usr/share/elasticsearch/data" Default="/mnt/user/appdata/elasticsearch/data" Mode="rw" Description="Directory where ES data is persisted" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/elasticsearch/data</Config>
+  <Config Name="Config" Target="/usr/share/elasticsearch/config" Default="/mnt/user/appdata/elasticsearch/config" Mode="rw" Description="Container Path: /usr/share/elasticsearch/config/" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/elasticsearch/config</Config>
+  <Config Name="Logs" Target="/usr/share/elasticsearch/logs" Default="/mnt/user/appdata/elasticsearch/logs" Mode="rw" Description="Container Path: /usr/share/elasticsearch/logs/" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/elasticsearch/logs</Config>
   <Config Name="REST API Port" Target="9200" Default="9200" Mode="tcp" Description="Host port exposed for REST HTTP interface." Type="Port" Display="always" Required="true" Mask="false">9200</Config>
   <Config Name="Nodes Communication Port" Target="9300" Default="9300" Mode="tcp" Description="Host port exposed for node communication." Type="Port" Display="always" Required="true" Mask="false">9300</Config>
   <Config Name="Discovery Type" Target="discovery.type" Default="single-node" Mode="" Description="Container Variable: discovery.type" Type="Variable" Display="always" Required="true" Mask="false">single-node</Config>
