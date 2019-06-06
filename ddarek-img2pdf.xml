@@ -9,8 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://hub.docker.com/r/ddarek/img2pdf/</Support>
   <Project/>
-  <Overview>img2pdf   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page
- for the container</Overview>
+  <Overview>img2pdf   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Overview>
   <Category/>
   <WebUI/>
   <TemplateURL/>
@@ -21,8 +20,7 @@
   <DateInstalled>1547657431</DateInstalled>
   <DonateText/>
   <DonateLink/>
-  <Description>img2pdf   Converted By Community Applications   Always verify this template (and values) against the dockerhub support p
-age for the container</Description>
+  <Description>img2pdf   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Description>
   <Networking>
     <Mode>bridge</Mode>
     <Publish/>
@@ -41,8 +39,6 @@ age for the container</Description>
   </Data>
   <Environment/>
   <Labels/>
-  <Config Name="image path" Target="/home/docker" Default="" Mode="rw" Description="Container Path: /home/docker" Type="Path" Display="
-always" Required="true" Mask="false">/mnt/user/temp/SCANNER</Config>
-  <Config Name="/app" Target="/app" Default="/mnt/user/appdata/img2pdf" Mode="rw" Description="Container Path: /app" Type="Path" Displa
-y="always" Required="false" Mask="false">/mnt/user/appdata/img2pdf</Config>
+  <Config Name="image path" Target="/home/docker" Default="" Mode="rw" Description="Container Path: /home/docker" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/temp/SCANNER</Config>
+  <Config Name="/app" Target="/app" Default="/mnt/user/appdata/img2pdf" Mode="rw" Description="Container Path: /app" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/img2pdf</Config>
 </Container>
