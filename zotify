@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>zotify</Name>
+  <Repository>ddarek/zotify</Repository>
+  <Registry>https://hub.docker.com/r/ddarek/zotify//Dockerfile/</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://hub.docker.com/r/ddarek/zotify/</Support>
+  <Project/>
+  <Overview>zotify</Overview>
+  <Category/>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1547657431</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Description>zotify</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/temp/music</HostDir>
+      <ContainerDir>/home/music</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/zotify</HostDir>
+      <ContainerDir>/app</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Labels/>
+  <Config Name="image path" Target="/home/docker" Default="" Mode="rw" Description="Container Path: /home/docker" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/temp/SCANNER</Config>
+  <Config Name="/app" Target="/app" Default="/mnt/user/appdata/img2pdf" Mode="rw" Description="Container Path: /app" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/img2pdf</Config>
+</Container>
