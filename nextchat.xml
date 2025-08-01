@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>nextchat</Name>
+  <Repository>ChatGPTNextWeb/NextChat</Repository>
+  <Registry>https://hub.docker.com/r/ddarek/NextChat//Dockerfile/</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://hub.docker.com/r/ddarek/NextChat/</Support>
+  <Project/>
+  <Overview>Light and Fast AI Assistant,with Claude, DeepSeek, GPT4 & Gemini Pro support.</Overview>
+  <Category/>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled></DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Description>Light and Fast AI Assistant,with Claude, DeepSeek, GPT4 & Gemini Pro support.</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/nextchat</HostDir>
+      <ContainerDir>/app</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Labels/>
+  <Config Name="/app" Target="/app" Default="/mnt/user/appdata/nextchat" Mode="rw" Description="Container Path: /app" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/nextchat</Config>
+</Container>
