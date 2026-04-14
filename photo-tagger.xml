@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<Container version="2">
+    <Name>photo-tagger</Name>
+    <Repository>photo-tagger</Repository>
+    <Registry/>
+    <Network>host</Network>
+    <Privileged>false</Privileged>
+    <Support>https://github.com/ddarek2000/photo_tagger/issues</Support>
+    <Project>https://github.com/ddarek2000/photo_tagger</Project>
+    <Overview>AI-powered Nextcloud photo tagger using Ollama (Moondream/Gemma3/LLaVA). Scans photos via WebDAV, analyzes with local AI, writes system tags back. Includes photo-frame candidate selection and Nextcloud Recognize integration.</Overview>
+    <Category>Productivity: MediaApp:Photos</Category>
+    <Icon>https://raw.githubusercontent.com/ddarek2000/photo_tagger/main/icon.png</Icon>
+
+    <!-- Nextcloud -->
+    <Config Name="Nextcloud URL" Target="NEXTCLOUD_BASE_URL" Default="https://nextcloud.example.com" Description="Full URL to your Nextcloud instance" Type="Variable" Display="always" Required="true" Mask="false"/>
+    <Config Name="Nextcloud Username" Target="NEXTCLOUD_USERNAME" Default="" Description="Nextcloud username" Type="Variable" Display="always" Required="true" Mask="false"/>
+    <Config Name="Nextcloud App Password" Target="NEXTCLOUD_APP_PASSWORD" Default="" Description="App password from Nextcloud Settings &gt; Security &gt; Devices &amp; sessions" Type="Variable" Display="always" Required="true" Mask="true"/>
+    <Config Name="Photo Root Path" Target="NEXTCLOUD_PHOTO_ROOT" Default="Photos" Description="Folder path in Nextcloud to scan for photos" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+    <!-- Nextcloud Database (Recognize integration) -->
+    <Config Name="Nextcloud DB Host" Target="NEXTCLOUD_DB_HOST" Default="localhost" Description="MariaDB host for Recognize integration. Leave empty to disable." Type="Variable" Display="always" Required="false" Mask="false"/>
+    <Config Name="Nextcloud DB Port" Target="NEXTCLOUD_DB_PORT" Default="3306" Description="MariaDB port" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Nextcloud DB User" Target="NEXTCLOUD_DB_USER" Default="photo_tagger" Description="Read-only DB user for Recognize tables" Type="Variable" Display="always" Required="false" Mask="false"/>
+    <Config Name="Nextcloud DB Password" Target="NEXTCLOUD_DB_PASSWORD" Default="" Description="DB password" Type="Variable" Display="always" Required="false" Mask="true"/>
+    <Config Name="Nextcloud DB Name" Target="NEXTCLOUD_DB_NAME" Default="nextcloud" Description="Nextcloud database name" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+    <!-- Ollama -->
+    <Config Name="Ollama URL" Target="OLLAMA_BASE_URL" Default="http://localhost:11434" Description="Ollama API endpoint" Type="Variable" Display="always" Required="true" Mask="false"/>
+    <Config Name="Vision Model" Target="OLLAMA_VISION_MODEL" Default="moondream|gemma3:4b|llava:7b|granite3.2-vision" Description="Ollama vision model for photo analysis" Type="Variable" Display="always" Required="true" Mask="false"/>
+    <Config Name="Normalizer Model" Target="OLLAMA_NORMALIZER_MODEL" Default="moondream" Description="Model for metadata normalization. Set same as vision model to skip second pass." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Ollama Keep Alive" Target="OLLAMA_KEEP_ALIVE" Default="5m" Description="How long Ollama keeps model loaded" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Wait for Idle Ollama" Target="OLLAMA_IDLE_REQUIRED" Default="true|false" Description="Wait when Ollama is busy with other models" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Idle Poll Seconds" Target="OLLAMA_IDLE_POLL_SECONDS" Default="60" Description="Seconds between idle checks" Type="Variable" Display="advanced-hide" Required="false" Mask="false"/>
+    <Config Name="Unload Between Phases" Target="OLLAMA_UNLOAD_BETWEEN_PHASES" Default="false|true" Description="Unload model between vision and normalization" Type="Variable" Display="advanced-hide" Required="false" Mask="false"/>
+
+    <!-- Photo Frame -->
+    <Config Name="Frame Selection Enabled" Target="FRAME_ENABLED" Default="true|false" Description="Enable photo-frame candidate selection" Type="Variable" Display="always" Required="false" Mask="false"/>
+    <Config Name="Frame Percent" Target="FRAME_PERCENT" Default="10" Description="Percentage of photos per directory to select" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Frame Max Per Directory" Target="FRAME_MAX_PER_DIR" Default="25" Description="Maximum frame candidates per directory" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Frame Hash Threshold" Target="FRAME_HASH_DISTANCE_THRESHOLD" Default="6" Description="Perceptual hash distance threshold (lower = stricter dedup)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Frame Tag" Target="FRAME_TAG" Default="photo-frame:candidate" Description="System tag for frame candidates" Type="Variable" Display="advanced-hide" Required="false" Mask="false"/>
+    <Config Name="Frame Rejected Tag" Target="FRAME_REJECTED_TAG" Default="photo-frame:rejected" Description="System tag for rejected candidates" Type="Variable" Display="advanced-hide" Required="false" Mask="false"/>
+
+    <!-- Person Tagging -->
+    <Config Name="Person Tagging Enabled" Target="PERSON_TAGGING_ENABLED" Default="true|false" Description="Tag photos with person names from Recognize face clusters" Type="Variable" Display="always" Required="false" Mask="false"/>
+    <Config Name="Person Tag Prefix" Target="PERSON_TAG_PREFIX" Default="person:" Description="Prefix for person tags" Type="Variable" Display="advanced-hide" Required="false" Mask="false"/>
+
+    <!-- Recognize Integration -->
+    <Config Name="Skip Recognize Tagged" Target="SKIP_RECOGNIZE_TAGGED" Default="true|false" Description="Skip AI tagging for photos already classified by Recognize" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+    <!-- Runtime -->
+    <Config Name="Continuous Mode" Target="CONTINUOUS_MODE" Default="true|false" Description="Keep running and scan periodically" Type="Variable" Display="always" Required="false" Mask="false"/>
+    <Config Name="Scan Interval (seconds)" Target="SLEEP_BETWEEN_SCANS_SECONDS" Default="300" Description="Seconds between scan cycles in continuous mode" Type="Variable" Display="always" Required="false" Mask="false"/>
+    <Config Name="Batch Size" Target="BATCH_SIZE" Default="25" Description="Photos per batch" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Run Limit" Target="RUN_LIMIT" Default="0" Description="Max photos to process per cycle (0 = unlimited)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="HTTP Timeout" Target="HTTP_TIMEOUT_SECONDS" Default="300" Description="HTTP request timeout in seconds" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Sleep Between Requests (ms)" Target="SLEEP_BETWEEN_REQUESTS_MS" Default="0" Description="Milliseconds between API requests" Type="Variable" Display="advanced-hide" Required="false" Mask="false"/>
+    <Config Name="Sleep Between Batches (seconds)" Target="SLEEP_BETWEEN_BATCHES_SECONDS" Default="30" Description="Seconds between batches" Type="Variable" Display="advanced-hide" Required="false" Mask="false"/>
+    <Config Name="Force Reprocess" Target="FORCE_REPROCESS" Default="false|true" Description="Re-analyze all photos (resets after first cycle)" Type="Variable" Display="always" Required="false" Mask="false"/>
+    <Config Name="Dry Run" Target="DRY_RUN" Default="false|true" Description="List candidates without processing" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+    <Config Name="Log Level" Target="LOG_LEVEL" Default="INFO|DEBUG|WARNING|ERROR" Description="Logging verbosity" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+    <!-- Paths -->
+    <Config Name="Data" Target="/data" Default="/mnt/cache/appdata/photo_tagger/data" Mode="rw" Description="SQLite database and lock file storage" Type="Path" Display="always" Required="true"/>
+</Container>
